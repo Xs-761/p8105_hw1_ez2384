@@ -6,10 +6,7 @@ date: "2024-09-21"
 
 ### **Problem 0.1, 0.2, and loading relevant packages**
 
-*LINK TO DEPOSITORY: <https://github.com/Xs-761/p8105_hw1_ez2384.git>*
-
 ```{r message=FALSE}
-# Load Prerequisite Packages
   library("ggplot2")
   library("tidyverse")
 ```

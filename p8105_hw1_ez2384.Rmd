@@ -27,8 +27,8 @@ Problem 1
 #   - Size of the Dataset: nrow=344, ncol=8
         ROWS=nrow(penguins)
         COLS=ncol(penguins)
-#   - the mean flipper length
-        Flipper_Mean = mean(penguins[[5]], na.rm=TRUE)
+#   - The mean flipper length
+        Flipper_Mean = mean(penguins$flipper_length_mm, na.rm=TRUE)
 #   - scatterplot
         ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm)) + geom_point(aes(color = factor(species)), na.rm=TRUE)
 

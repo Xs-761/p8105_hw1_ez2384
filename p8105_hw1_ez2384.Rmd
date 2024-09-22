@@ -4,7 +4,7 @@ output: github_document
 date: "2024-09-21"
 ---
 
-#### **Problem 0.1, 0.2, and loading relevant packages**
+### **Problem 0.1, 0.2, and loading relevant packages**
 
 *LINK TO DEPOSITORY: <https://github.com/Xs-761/p8105_hw1_ez2384.git>*
 
@@ -14,7 +14,7 @@ date: "2024-09-21"
   library("tidyverse")
 ```
 
-#### **Problem 1**
+### **Problem 1**
 
 Load the PENGUINS dataset
 ```{r}
@@ -49,7 +49,7 @@ Description of the PENGUINS dataset:
 ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm)) + geom_point(aes(color = species), na.rm=TRUE, size=1) + theme_minimal() + ggtitle("Scatterplot of Bill Length vs. Flipper Length") + theme(plot.title = element_text(hjust = 0.35))
 ```
 
-#### **Problem 2**
+### **Problem 2**
 
 Create the Desired Dataframe
 ```{r}

@@ -1,9 +1,6 @@
 ---
 title: "p8105_hw1_ez2384"
-output: 
-  github_document: 
-    toc: true
-    toc_float: true
+output: github_document
 date: "2024-09-21"
 ---
 

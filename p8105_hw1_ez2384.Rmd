@@ -1,43 +1,61 @@
 ---
 title: "p8105_hw1_ez2384"
-output: html_document
+output: 
+  html_document: 
+    toc: true
+    toc_float: true
 date: "2024-09-21"
 ---
 
-Problem 0.1, 0.2, and loading relevant packages
+#### **Problem 0.1, 0.2, and loading relevant packages**
 
-LINK TO DEPOSITORY: <https://github.com/Xs-761/p8105_hw1_ez2384.git>
+*LINK TO DEPOSITORY: <https://github.com/Xs-761/p8105_hw1_ez2384.git>*
 
-```{r}
+```{r message=FALSE}
 # Load Prerequisite Packages
-  library("dplyr")
   library("ggplot2")
   library("tidyverse")
 ```
 
-Problem 1
+#### **Problem 1**
 
+Load the PENGUINS dataset
 ```{r}
-# Load the PENGUINS dataset
   data("penguins", package = "palmerpenguins")
-
-## Description of the PENGUINS dataset
-#   - 8 Variables:  SPECIES (species of the penguin), ISLAND (island the kind of species live in), BILL_LENGTH_MM, BILL_DEPTH_MM, FLIPPER_LENGTH_MM,
-#                   BODY_MASS_G (body mass in grams), SEX (male or female), YEAR
-#   - Size of the Dataset: nrow=344, ncol=8
-        ROWS=nrow(penguins)
-        COLS=ncol(penguins)
-#   - The mean flipper length
-        Flipper_Mean = mean(penguins$flipper_length_mm, na.rm=TRUE)
-#   - scatterplot
-        ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm)) + geom_point(aes(color = factor(species)), na.rm=TRUE)
-
 ```
 
-Problem 2
+Description of the PENGUINS dataset:
+```{r, results="hide"}
+  ?penguins
+```
 
+* 8 Variables:
+  * SPECIES (a factor denoting penguin species)
+  * ISLAND (a factor denoting island in Palmer Archipelago, Antarctica)
+  * BILL_LENGTH_MM (a number denoting bill length (millimeters))
+  * BILL_DEPTH_MM (a number denoting bill depth (millimeters))
+  * FLIPPER_LENGTH_MM (an integer denoting flipper length (millimeters))
+  * BODY_MASS_G (an integer denoting body mass (grams))
+  * SEX (a factor denoting penguin sex (female, male))
+  * YEAR (an integer denoting the study year (2007, 2008, or 2009))
+* Size of the Dataset: 344 x 8
 ```{r}
-# Create the Desired Dataframe #
+        nrow(penguins)
+        ncol(penguins)
+```
+  - Mean flipper length
+```{r}
+        mean(penguins$flipper_length_mm, na.rm=TRUE)
+```
+  - Scatterplot
+```{r}
+ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm)) + geom_point(aes(color = species), na.rm=TRUE, size=1) + theme_minimal() + ggtitle("Scatterplot of Bill Length vs. Flipper Length") + theme(plot.title = element_text(hjust = 0.35))
+```
+
+#### **Problem 2**
+
+Create the Desired Dataframe
+```{r}
   set.seed(2048)      # Select a pseudo random seed for replication purposes
   DF <- data.frame(
           random_sample = rnorm(10),
@@ -45,16 +63,19 @@ Problem 2
           factor_vector = factor(sample(c("LEVEL1", "LEVEL2", "LEVEL3"), size = 10, replace = TRUE))  # To randomly select from the 3 levels
   )
   DF$logical_vector <- DF$random_sample>0
+```
   
-# Compute the Means for Each Column and Discuss whether Applicable #
-  MEAN_NUMERIC   = mean(DF[["random_sample"]])   # Mean() works for numeric data column
-  MEAN_LOGICAL   = mean(DF[["logical_vector"]])  # Mean() works for logical data column, treating TRUE as 1 and FALSE as 0
-  MEAN_CHARACTER = mean(DF[["char_vector"]])     # Mean() does NOT work for character data types, returning NA
-  MEAN_FACTOR    = mean(DF[["factor_vector"]])   # Mean() does NOT work for factor data column, returning NA
-  
-# Applying as.numeric() to the logical, character, and factor variables. Discuss what happens and the reasoning. #
+Compute the Means for Each Column and Discuss whether Applicable
+```{r}
+  mean(DF[["random_sample"]])   # Mean() works for numeric data column
+  mean(DF[["logical_vector"]])  # Mean() works for logical data column, treating TRUE as 1 and FALSE as 0
+  mean(DF[["char_vector"]])     # Mean() does NOT work for character data types, returning NA
+  mean(DF[["factor_vector"]])   # Mean() does NOT work for factor data column, returning NA
+```
+
+Applying as.numeric() to the logical, character, and factor variables. Discuss what happens and the reasoning.
+```{r}
   conv_num_vector = as.numeric(DF$logical_vector)  # conversion successful: treating TRUE as 1 and FALSE as 0
   conv_num_char   = as.numeric(DF$char_vector)     # warning appears, then returns NA throughout
   conv_num_factor = as.numeric(DF$factor_vector)   # conversion successful: treating the LEVEL CODE of the factor as 1, 2, 3 for the three levels specified
-  
 ```
